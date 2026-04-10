@@ -1,0 +1,229 @@
+<!-- Language Switch -->
+<div class="lang-switch">
+  <button (click)="setLanguage('en')" [class.active]="language === 'en'">ENG</button>
+  <button (click)="setLanguage('geo')" [class.active]="language === 'geo'">GEO</button>
+  <button (click)="setLanguage('ru')" [class.active]="language === 'ru'">RU</button>
+</div>
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=80">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-content">
+    <p class="section-label">
+      {{ translations[language].welcome }}
+    </p>
+
+    <h1 class="hero-title">
+      {{ translations[language].heroTitle }}<br>
+      <em>{{ translations[language].heroTitle2 }}</em>
+    </h1>
+
+    <p class="hero-sub">
+      {{ translations[language].heroSub }}
+    </p>
+
+    <div class="hero-actions">
+      <a routerLink="/tours" class="btn-primary">
+        {{ translations[language].explore }}
+      </a>
+      <a routerLink="/" fragment="about" class="btn-outline">
+        {{ translations[language].story }}
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>{{ translations[language].scroll }}</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── Stats ──────────────────────────────────────────────────────────────── -->
+<section class="stats-bar">
+  <div class="container stats-grid">
+    <div class="stat" *ngFor="let s of stats">
+      <span class="stat-value">{{ s.value }}</span>
+      <span class="stat-label">{{ s.label }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ──────────────────────────────────────────────────────────────── -->
+<section class="about section" id="about">
+  <div class="container about-grid">
+    <div class="about-image-wrap">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" class="about-img">
+      <div class="about-badge">
+        <span class="badge-num">12</span>
+        <span class="badge-text">
+          {{ translations[language].years }}
+        </span>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <p class="section-label">
+        {{ translations[language].about }}
+      </p>
+
+      <h2 class="section-title">
+        {{ translations[language].aboutTitle }}
+      </h2>
+
+      <div class="divider"></div>
+
+      <p>{{ translations[language].aboutText1 }}</p>
+      <p style="margin-top:1rem">
+        {{ translations[language].aboutText2 }}
+      </p>
+
+      <a routerLink="/tours" class="btn-primary" style="margin-top:2rem">
+        {{ translations[language].discover }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Featured Tours ─────────────────────────────────────────────── -->
+<section class="featured section">
+  <div class="container">
+    <p class="section-label">
+      {{ translations[language].curated }}
+    </p>
+
+    <h2 class="section-title">
+      {{ translations[language].featured }}
+    </h2>
+
+    <div class="divider"></div>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-track">
+      <div
+        class="slide"
+        *ngFor="let tour of featuredTours; let i = index"
+        [class.active]="i === currentSlide"
+      >
+        <img [src]="tour.image">
+        <div class="slide-overlay"></div>
+
+        <div class="slide-content">
+          <span class="slide-tag">{{ tour.tag }}</span>
+          <h3 class="slide-title">{{ tour.title }}</h3>
+          <p class="slide-desc">{{ tour.shortDescription }}</p>
+
+          <div class="slide-meta">
+            <span>{{ tour.duration }}</span>
+            <span class="dot">·</span>
+            <span>{{ translations[language].from }} ${{ tour.price }}</span>
+          </div>
+
+          <a routerLink="/tours" class="btn-primary">
+            {{ translations[language].details }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-dots">
+      <button
+        *ngFor="let tour of featuredTours; let i = index"
+        class="dot-btn"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)">
+      </button>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:2.5rem">
+    <a routerLink="/tours" class="btn-outline">
+      {{ translations[language].allTours }}
+    </a>
+  </div>
+</section>
+
+<!-- ── Why Us ─────────────────────────────────────────────────────────────── -->
+<section class="why section">
+  <div class="container">
+    <p class="section-label">
+      {{ translations[language].why }}
+    </p>
+
+    <h2 class="section-title">
+      {{ translations[language].difference }}
+    </h2>
+
+    <div class="divider"></div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>{{ translations[language].w1Title }}</h3>
+        <p>{{ translations[language].w1Text }}</p>
+      </div>
+
+      <div class="why-card">
+        <h3>{{ translations[language].w2Title }}</h3>
+        <p>{{ translations[language].w2Text }}</p>
+      </div>
+
+      <div class="why-card">
+        <h3>{{ translations[language].w3Title }}</h3>
+        <p>{{ translations[language].w3Text }}</p>
+      </div>
+
+      <div class="why-card">
+        <h3>{{ translations[language].w4Title }}</h3>
+        <p>{{ translations[language].w4Text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ────────────────────────────────────────────────────────────── -->
+<section class="contact section" id="contact">
+  <div class="container contact-inner">
+    <div>
+      <p class="section-label">
+        {{ translations[language].contact }}
+      </p>
+
+      <h2 class="section-title">
+        {{ translations[language].begin }}
+      </h2>
+
+      <div class="divider"></div>
+
+      <p>{{ translations[language].contactText }}</p>
+
+      <div class="contact-details">
+        <p><span>Email</span> hello@geotours.ge</p>
+        <p><span>{{ translations[language].phone }}</span> +995 32 000 000</p>
+        <p><span>{{ translations[language].location }}</span> Tbilisi</p>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <div class="contact-form">
+        <input type="text" [placeholder]="translations[language].name">
+        <input type="email" [placeholder]="translations[language].email">
+
+        <select>
+          <option disabled selected>
+            {{ translations[language].tourSelect }}
+          </option>
+        </select>
+
+        <textarea rows="4" [placeholder]="translations[language].message"></textarea>
+
+        <button class="btn-primary" style="width:100%">
+          {{ translations[language].send }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

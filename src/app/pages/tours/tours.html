@@ -1,0 +1,59 @@
+<!-- Language Switch -->
+<div class="lang-switch">
+  <button (click)="setLanguage('en')" [class.active]="language === 'en'">ENG</button>
+  <button (click)="setLanguage('geo')" [class.active]="language === 'geo'">GEO</button>
+  <button (click)="setLanguage('ru')" [class.active]="language === 'ru'">RU</button>
+</div>
+
+<!-- ── Page Hero ──────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-content">
+    <p class="section-label">
+      {{ translations[language].label }}
+    </p>
+
+    <h1 class="hero-title">
+      {{ translations[language].title }}
+    </h1>
+
+    <p class="hero-sub">
+      {{ tours.length }} {{ translations[language].sub }}
+    </p>
+  </div>
+</section>
+
+<!-- ── Tours Grid ─────────────────────────────────────────── -->
+<section class="tours-section">
+  <div class="container">
+    <div class="tours-grid">
+      <app-tour-card
+        *ngFor="let tour of tours"
+        [tour]="tour">
+      </app-tour-card>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────── -->
+<section class="cta-strip">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="section-title">
+        {{ translations[language].ctaTitle }}
+      </h2>
+
+      <p>
+        {{ translations[language].ctaText }}
+      </p>
+    </div>
+
+    <a routerLink="/" fragment="contact" class="btn-primary">
+      {{ translations[language].ctaBtn }}
+    </a>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="container nav-inner">
+    <a routerLink="/" class="logo">
+      <span class="logo-main">GEO</span><span class="logo-accent">TOURS</span>
+    </a>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="menuOpen=false">Home</a></li>
+      <li><a routerLink="/tours" routerLinkActive="active" (click)="menuOpen=false">Tours</a></li>
+      <li><a routerLink="/" fragment="about" (click)="menuOpen=false">About</a></li>
+      <li><a routerLink="/" fragment="contact" (click)="menuOpen=false">Contact</a></li>
+      <li><a routerLink="/tours" class="btn-primary nav-cta" (click)="menuOpen=false">Book Now</a></li>
+    </ul>
+
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

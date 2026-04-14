@@ -43,26 +43,12 @@
 </section>
 
 <!-- ── Stats ──────────────────────────────────────────────────────────────── -->
-<section class="stats-bar">
-  <div class="container stats-grid">
-    <div class="stat" *ngFor="let s of stats">
-      <span class="stat-value">{{ s.value }}</span>
-      <span class="stat-label">{{ s.label }}</span>
-    </div>
-  </div>
-</section>
 
 <!-- ── About ──────────────────────────────────────────────────────────────── -->
 <section class="about section" id="about">
   <div class="container about-grid">
     <div class="about-image-wrap">
       <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" class="about-img">
-      <div class="about-badge">
-        <span class="badge-num">12</span>
-        <span class="badge-text">
-          {{ translations[language].years }}
-        </span>
-      </div>
     </div>
 
     <div class="about-text">
@@ -207,23 +193,5 @@
       </div>
     </div>
 
-    <div class="contact-form-wrap">
-      <div class="contact-form">
-        <input type="text" [placeholder]="translations[language].name">
-        <input type="email" [placeholder]="translations[language].email">
-
-        <select>
-          <option disabled selected>
-            {{ translations[language].tourSelect }}
-          </option>
-        </select>
-
-        <textarea rows="4" [placeholder]="translations[language].message"></textarea>
-
-        <button class="btn-primary" style="width:100%">
-          {{ translations[language].send }}
-        </button>
-      </div>
-    </div>
   </div>
 </section>

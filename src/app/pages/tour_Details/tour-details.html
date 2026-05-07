@@ -1,0 +1,116 @@
+@if (tour) {
+<section class="tour-details">
+
+  <!-- Hero with Slider -->
+  <div class="hero">
+    <div class="hero-media">
+      @for (img of tour.images; track img; let i = $index) {
+        <img
+          [src]="img"
+          [alt]="tour.title + ' photo ' + (i + 1)"
+          class="hero-img"
+          [class.active]="i === activeSlide"
+          loading="eager">
+      }
+      <div class="hero-overlay"></div>
+
+      <!-- Slider Controls -->
+      @if (tour.images && tour.images.length > 1) {
+        <button class="slider-btn slider-prev" (click)="prevSlide()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+        <button class="slider-btn slider-next" (click)="nextSlide()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+        <div class="slider-dots">
+          @for (img of tour.images; track img; let i = $index) {
+            <button class="slider-dot" [class.active]="i === activeSlide" (click)="goToSlide(i)"></button>
+          }
+        </div>
+        <div class="slider-counter">{{ activeSlide + 1 }} / {{ tour.images.length }}</div>
+      }
+    </div>
+
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <span class="breadcrumb-link" routerLink="/tours">Tours</span>
+        <span class="breadcrumb-sep">—</span>
+        <span>{{ tour.region }}</span>
+      </div>
+      <span class="hero-tag">{{ tour.tag }}</span>
+      <h1 class="hero-title">{{ tour.title }}</h1>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          {{ tour.duration }}
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {{ tour.region }}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+
+  <!-- Sticky Price Bar -->
+  <div class="price-bar">
+    <div class="price-bar-inner">
+      <div class="price-bar-label">Starting from</div>
+      <div class="price-bar-amount">${{ tour.price }}<span class="price-bar-per"> / person</span></div>
+    </div>
+    <button class="btn-primary">Book This Tour</button>
+  </div>
+
+  <!-- Body -->
+  <div class="details-body">
+    <div class="details-main">
+      <div class="section overview-section">
+        <div class="section-eyebrow">Overview</div>
+        <p class="overview-text">{{ tour.shortDescription }}</p>
+      </div>
+      <div class="section highlights-section">
+        <div class="section-eyebrow">Highlights</div>
+        <ul class="highlights-list">
+          <li *ngFor="let h of tour.highlights" class="highlight-item">
+            <span class="highlight-dot"></span>
+            <span>{{ h }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <aside class="details-aside">
+      <div class="aside-card">
+        <div class="aside-card-header">Quick Info</div>
+        <div class="info-row">
+          <span class="info-label">Duration</span>
+          <span class="info-value">{{ tour.duration }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Region</span>
+          <span class="info-value">{{ tour.region }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Category</span>
+          <span class="info-value">{{ tour.tag }}</span>
+        </div>
+        <div class="aside-divider"></div>
+        <div class="aside-price">
+          <span class="aside-price-from">From</span>
+          <span class="aside-price-amount">${{ tour.price }}</span>
+          <span class="aside-price-per">per person</span>
+        </div>
+        <button class="btn-primary btn-full">Book Now</button>
+        <button class="btn-ghost btn-full">Save to Wishlist</button>
+      </div>
+    </aside>
+  </div>
+
+</section>
+}

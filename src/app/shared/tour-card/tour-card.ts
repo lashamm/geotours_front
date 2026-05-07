@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Tour } from '../../services/tour';
 
 @Component({
@@ -11,4 +12,10 @@ import { Tour } from '../../services/tour';
 })
 export class TourCardComponent {
   @Input() tour!: Tour;
+
+  constructor(private router: Router) {}
+
+  goToDetails() {
+    this.router.navigate(['/tours', this.tour.id]);
+  }
 }

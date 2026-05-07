@@ -55,6 +55,13 @@ a:active {
   color: inherit;
 }
 
+// Remove or adjust anything like this
+.container, main, .page-wrapper {
+  max-width: 1200px;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+
 /* Buttons: reset font + remove the default grey */
 button {
   font: inherit;

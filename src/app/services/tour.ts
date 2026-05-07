@@ -93,6 +93,18 @@ export class TourService {
       shortDescription: 'Explore the rock-hewn cave monastery of Vardzia, then rejuvenate in legendary Borjomi mineral springs.',
       highlights: ['Vardzia cave city exploration', 'Borjomi mineral water park', 'Rabati Castle', 'Green Monastery at Sapara'],
       groupSize: '2–8 guests'
+    },
+    {
+      id: 7,
+      title: 'Vardzia Cavdsfgdsfgdsfgsdfge City & Borjomi Spa',
+      region: 'Samtskhedsgdsfg-Javakheti',
+      duration: '4 Dadsfgdsfgdsfgys',
+      price: 890,
+      image: 'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
+      tag: 'Heritage',
+      shortDescription: 'Expdsfgdsfgdsfgdsflore the rock-hewn cave monastery of Vardzia, then rejuvenate in legendary Borjomi mineral springs.',
+      highlights: ['Vardzdsfgdsfgia cave city exploration', 'Borjomi mineral water park', 'Rabati Castle', 'Green Monastery at Sapara'],
+      groupSize: '2–8 guegdsfgdsfgsts'
     }
   ];
 

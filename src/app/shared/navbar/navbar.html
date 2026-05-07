@@ -1,19 +1,50 @@
-<nav class="navbar" [class.scrolled]="scrolled">
-  <div class="container nav-inner">
-    <a routerLink="/" class="logo">
-      <span class="logo-main">GEO</span><span class="logo-accent">TOURS</span>
+<header class="nav" [class.scrolled]="scrolled" [class.menu-open]="open">
+  <div class="nav-inner">
+    <a routerLink="/" class="nav-logo" (click)="closeMenu()">
+      GEO<span>TOURS</span>
     </a>
 
-    <ul class="nav-links" [class.open]="menuOpen">
-      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="menuOpen=false">Home</a></li>
-      <li><a routerLink="/tours" routerLinkActive="active" (click)="menuOpen=false">Tours</a></li>
-      <li><a routerLink="/" fragment="about" (click)="menuOpen=false">About</a></li>
-      <li><a routerLink="/" fragment="contact" (click)="menuOpen=false">Contact</a></li>
-      <li><a routerLink="/tours" class="btn-primary nav-cta" (click)="menuOpen=false">Book Now</a></li>
-    </ul>
+    <nav class="nav-links" aria-label="Primary">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t.home }}</a>
+      <a routerLink="/tours" routerLinkActive="active">{{ t.tours }}</a>
+      <a routerLink="/" fragment="about">{{ t.about }}</a>
+      <a routerLink="/" fragment="contact">{{ t.contact }}</a>
+    </nav>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <div class="lang-switch desktop-only">
+        <button (click)="setLanguage('en')"  [class.active]="language==='en'">EN</button>
+        <button (click)="setLanguage('geo')" [class.active]="language==='geo'">GEO</button>
+        <button (click)="setLanguage('ru')"  [class.active]="language==='ru'">RU</button>
+      </div>
+
+      <button class="burger" [class.open]="open" (click)="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-</nav>
+</header>
+
+<!-- Mobile drawer (sibling of header — independent of nav scroll state) -->
+<div class="mobile-menu" [class.open]="open" (click)="closeMenu()">
+  <div class="mobile-menu__inner" (click)="$event.stopPropagation()">
+
+    <nav class="mobile-links">
+      <a routerLink="/" (click)="closeMenu()">{{ t.home }}</a>
+      <a routerLink="/tours" (click)="closeMenu()">{{ t.tours }}</a>
+      <a routerLink="/" fragment="about" (click)="closeMenu()">{{ t.about }}</a>
+      <a routerLink="/" fragment="contact" (click)="closeMenu()">{{ t.contact }}</a>
+    </nav>
+
+    <div class="mobile-lang">
+      <button (click)="setLanguage('en')"  [class.active]="language==='en'">English</button>
+      <button (click)="setLanguage('geo')" [class.active]="language==='geo'">ქართული</button>
+      <button (click)="setLanguage('ru')"  [class.active]="language==='ru'">Русский</button>
+    </div>
+
+    <div class="mobile-foot">
+      <a href="tel:+995320000000">+995 32 000 000</a>
+      <a href="mailto:hello@geotours.ge">hello@geotours.ge</a>
+    </div>
+  </div>
+</div>

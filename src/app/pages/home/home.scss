@@ -1,39 +1,39 @@
 /* ── Language switch ─────────────────────────────────────── */
-.lang-switch {
-  position: fixed;
-  top: 1.4rem;
-  right: 1.4rem;
-  z-index: 60;
+// .lang-switch {
+//   position: fixed;
+//   top: 1.4rem;
+//   right: 1.4rem;
+//   z-index: 60;
 
-  display: flex;
-  gap: .35rem;
-  padding: .35rem;
-  background: rgba(8,8,11,.6);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  box-shadow: 0 14px 38px rgba(0,0,0,.45);
+//   display: flex;
+//   gap: .35rem;
+//   padding: .35rem;
+//   background: rgba(8,8,11,.6);
+//   backdrop-filter: blur(14px);
+//   border: 1px solid var(--color-border);
+//   border-radius: 999px;
+//   box-shadow: 0 14px 38px rgba(0,0,0,.45);
 
-  button {
-    padding: .45rem .9rem;
-    font-size: .68rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    background: transparent;
-    color: rgba(255,255,255,.62);
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all var(--transition);
-    font-weight: 700;
+//   button {
+//     padding: .45rem .9rem;
+//     font-size: .68rem;
+//     letter-spacing: .18em;
+//     text-transform: uppercase;
+//     background: transparent;
+//     color: rgba(255,255,255,.62);
+//     border: none;
+//     border-radius: 999px;
+//     cursor: pointer;
+//     transition: all var(--transition);
+//     font-weight: 700;
 
-    &:hover { color: var(--color-gold); }
-    &.active {
-      background: var(--color-gold);
-      color: #111;
-    }
-  }
-}
+//     &:hover { color: var(--color-gold); }
+//     &.active {
+//       background: var(--color-gold);
+//       color: #111;
+//     }
+//   }
+// }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero {

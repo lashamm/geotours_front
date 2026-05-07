@@ -161,8 +161,8 @@ ul, ol { list-style: none; }
 /* ── Toast popup ─────────────────────────────────────────── */
 .app-toast {
   position: fixed;
-  bottom: 1.6rem;
-  left: 50%;
+  bottom: 2rem;
+  left: 70%;
   transform: translate(-50%, 200%);
   z-index: 9998;
 

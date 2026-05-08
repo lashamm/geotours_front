@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       fleetSub: 'Three vehicle classes for every terrain — each impeccably maintained for long-distance luxury.',
       vClass: 'Mercedes V-Class', vClassDesc: 'Groups up to 7. Spacious & refined.',
       sClass: 'Mercedes S-Class', sClassDesc: 'The pinnacle of private luxury transfer.',
-      toyota: 'Premium 4×4', toyotaDesc: 'Where roads end, the journey continues.',
+      // toyota: 'Premium 4×4', toyotaDesc: 'Where roads end, the journey continues.',
     },
 
     geo: {

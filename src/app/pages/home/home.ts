@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       scroll: 'Scroll',
 
       years: 'Years of Excellence',
-      about: 'About GeoTours',
+      about: 'About Vardotour',
       aboutTitle: 'Georgia Deserves to Be Experienced, Not Just Visited',
       aboutText1: 'We are a boutique travel house born in Tbilisi, dedicated to revealing the soul of Georgia.',
       aboutText2: 'Every itinerary is handcrafted. Every guide is a local expert. Every moment is yours.',
@@ -84,8 +84,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       details: 'View Details',
       allTours: 'View All Tours',
 
-      why: 'Why GeoTours',
-      difference: 'The GeoTours Difference',
+      why: 'Why Vardotour',
+      difference: 'The Vardotour Difference',
 
       w1Title: 'Exclusively Boutique',
       w1Text: 'Small groups only. Never more than 8 guests.',
@@ -119,7 +119,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       scroll: 'ჩასქროლეთ',
 
       years: 'წლის გამოცდილება',
-      about: 'GeoTours შესახებ',
+      about: 'Vardotour შესახებ',
       aboutTitle: 'საქართველო უნდა იგრძნო და არა მხოლოდ ნახო',
       aboutText1: 'ჩვენ ვართ ბუტიკური ტურისტული კომპანია ტბილისიდან.',
       aboutText2: 'ყველაფერი ინდივიდუალურად იგეგმება.',
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       scroll: 'Прокрутите',
 
       years: 'лет опыта',
-      about: 'О GeoTours',
+      about: 'О Vardotour',
       aboutTitle: 'Грузию нужно прожить',
       aboutText1: 'Мы туристическая компания из Тбилиси.',
       aboutText2: 'Каждый маршрут создаётся вручную.',

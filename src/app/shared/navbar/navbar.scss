@@ -4,7 +4,7 @@
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 60;                 /* sits above the drawer so burger stays clickable */
+  z-index: 60;
   padding: 14px 0;
 
   background: linear-gradient(to bottom, rgba(0,0,0,.55), transparent);
@@ -19,7 +19,6 @@
     border-bottom-color: var(--color-border);
   }
 
-  /* When drawer is open, force solid bg (no transparency over the dark menu) */
   &.menu-open {
     background: rgba(5,5,7,.95);
     backdrop-filter: blur(18px);
@@ -37,7 +36,11 @@
   gap: 1.5rem;
 }
 
+/* ── Logo ───────────────────────────────────────────────── */
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
   font-family: var(--font-display);
   font-size: 1.05rem;
   letter-spacing: .35em;
@@ -46,6 +49,13 @@
   white-space: nowrap;
 
   span { color: var(--color-gold); }
+}
+
+.crown-icon {
+  width: 26px;
+  height: 18px;
+  color: var(--color-gold);
+  flex-shrink: 0;
 }
 
 /* Desktop links */
@@ -75,27 +85,102 @@
 
 .nav-right { display: flex; align-items: center; gap: 1rem; }
 
-/* Desktop language pill */
-.lang-switch {
+/* ── Language Dropdown ──────────────────────────────────── */
+.lang-dropdown {
+  position: relative;
+}
+
+.lang-trigger {
   display: flex;
-  gap: .25rem;
-  padding: .3rem;
+  align-items: center;
+  gap: .35rem;
+  padding: .35rem .7rem;
   background: rgba(255,255,255,.06);
   border: 1px solid var(--color-border);
   border-radius: 999px;
+  color: rgba(255,255,255,.75);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s ease;
 
-  button {
-    padding: .35rem .8rem;
-    font-size: .65rem;
+  &:hover {
+    border-color: rgba(201,169,110,.5);
+    color: var(--color-gold);
+  }
+
+  .lang-trigger-short { min-width: 1.6em; text-align: center; }
+}
+
+.lang-chevron {
+  transition: transform .25s ease;
+  .lang-dropdown.open & { transform: rotate(180deg); }
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  right: 0;
+  z-index: 100;
+  min-width: 155px;
+  background: rgba(12,12,16,.97);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: .35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.5);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, visibility .2s ease, transform .2s ease;
+
+  .lang-dropdown.open & {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  width: 100%;
+  padding: .5rem .65rem;
+  border-radius: 5px;
+  text-align: left;
+  color: rgba(255,255,255,.65);
+  transition: background .15s ease, color .15s ease;
+  cursor: pointer;
+
+  &:hover { background: rgba(255,255,255,.07); color: #fff; }
+
+  &.active {
+    background: rgba(201,169,110,.12);
+    color: var(--color-gold);
+  }
+
+  .lang-option-short {
+    font-size: .6rem;
     font-weight: 700;
-    letter-spacing: .2em;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,.6);
-    border-radius: 999px;
-    transition: all .25s ease;
+    width: 1.8em;
+    text-align: center;
+    color: inherit;
+    opacity: .7;
+  }
 
-    &:hover { color: var(--color-gold); }
-    &.active { background: var(--color-gold); color: #111; }
+  .lang-option-label {
+    font-size: .78rem;
+    font-weight: 400;
   }
 }
 
@@ -127,26 +212,21 @@
   }
 }
 
-/* ── Mobile drawer (independent of .nav) ────────────────── */
+/* ── Mobile drawer ───────────────────────────────────────── */
 .mobile-menu {
   position: fixed;
   inset: 0;
   z-index: 55;
-
-  /* Use dynamic viewport so iOS address bar doesn't break it */
   height: 100vh;
   height: 100dvh;
-
   background: rgba(5,5,7,.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-
   display: flex;
   align-items: flex-start;
   justify-content: center;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
@@ -162,7 +242,7 @@
 .mobile-menu__inner {
   width: 100%;
   max-width: 460px;
-  padding: 6.5rem 1.8rem 3rem;   /* 6.5rem clears the nav */
+  padding: 6.5rem 1.8rem 3rem;
   text-align: center;
 }
 
@@ -193,10 +273,10 @@
   margin-bottom: 2.5rem;
 
   button {
-    padding: .55rem 1rem;
+    padding: .5rem .9rem;
     font-size: .68rem;
     font-weight: 600;
-    letter-spacing: .15em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     background: rgba(255,255,255,.05);
     color: rgba(255,255,255,.65);
@@ -231,12 +311,11 @@
 
 /* ── Breakpoint ─────────────────────────────────────────── */
 @media (max-width: 920px) {
-  .nav-links            { display: none; }
-  .lang-switch.desktop-only { display: none; }
-  .burger               { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-links               { display: none; }
+  .lang-dropdown.desktop-only { display: none; }
+  .burger                  { display: inline-flex; align-items: center; justify-content: center; }
 }
 
-/* Larger screens — drawer never shows */
 @media (min-width: 921px) {
   .mobile-menu { display: none !important; }
 }

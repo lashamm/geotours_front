@@ -6,20 +6,17 @@ export interface Tour {
   region: string;
   duration: string;
   price: number;
-  image: string;        // keep this as the primary/cover image
-  images?: string[];    // ← add this for the gallery
+  image: string;
+  images?: string[];
+  cuisine?: string[];
   tag: string;
   shortDescription: string;
   highlights: string[];
   groupSize: string;
 }
+
 @Injectable({ providedIn: 'root' })
 export class TourService {
-
-  // ── Static data ─────────────────────────────────────────────────────────────
-  // When the backend is ready, replace getTours() with an HttpClient GET call:
-  //   return this.http.get<Tour[]>('/api/tours');
-  // ────────────────────────────────────────────────────────────────────────────
 
   private tours: Tour[] = [
     {
@@ -28,12 +25,19 @@ export class TourService {
       region: 'Svaneti',
       duration: '7 Days',
       price: 1890,
-       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-  images: [
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
-  ],
+      image: 'assets/imgs/regions/svaneti/mestia-3.jpg',
+      images: [
+        'assets/imgs/regions/svaneti/mestia-3.jpg',
+        'assets/imgs/regions/svaneti/mestia.jpg',
+        'assets/imgs/regions/svaneti/mestia-cross.jpg',
+        'assets/imgs/regions/svaneti/ushba.jpeg',
+        'assets/imgs/regions/svaneti/svaneti-night.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/svaneti/cuisine/tashmijabi.jpg',
+        'assets/imgs/regions/svaneti/cuisine/svanuri-kubdari.webp',
+        'assets/imgs/regions/svaneti/cuisine/chvishtari.jpg',
+      ],
       tag: 'Mountains',
       shortDescription: 'Trek through ancient Svan towers and glacial valleys at the roof of the Caucasus.',
       highlights: ['Mestia to Ushguli trek', 'UNESCO Svan towers', 'Shkhara glacier viewpoint', 'Local Svan family homestay'],
@@ -45,11 +49,21 @@ export class TourService {
       region: 'Kakheti',
       duration: '4 Days',
       price: 980,
-      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80',
+      image: 'assets/imgs/regions/kakheti/sighnaghi.jpg',
       images: [
-        'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80',
-        'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        'assets/imgs/regions/kakheti/sighnaghi.jpg',
+        'assets/imgs/regions/kakheti/davit-gareja.jpg',
+        'assets/imgs/regions/kakheti/nekresi.jpg',
+        'assets/imgs/regions/kakheti/gurjaani-kvelatsminda.jpg',
+        'assets/imgs/regions/kakheti/kvareli.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/kakheti/cuisine/kakhuri-wine.jpg',
+        'assets/imgs/regions/kakheti/cuisine/qvevri-wine.jpg',
+        'assets/imgs/regions/kakheti/cuisine/kakhuri-mtsvadi.jpg',
+        'assets/imgs/regions/kakheti/cuisine/kakhuri-shoti.jpg',
+        'assets/imgs/regions/kakheti/cuisine/kakhuri-sweets.webp',
+        'assets/imgs/regions/kakheti/cuisine/khashlama.jpeg',
       ],
       tag: 'Wine',
       shortDescription: 'Explore Georgia\'s oldest wine region, harvest grapes in ancient vineyards, and master qvevri winemaking.',
@@ -62,11 +76,15 @@ export class TourService {
       region: 'Tbilisi',
       duration: '3 Days',
       price: 650,
-      image: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80',
+      image: 'assets/imgs/regions/tbilisi/old-tbilisi.png',
       images: [
-        'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80',
-        'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        'assets/imgs/regions/tbilisi/old-tbilisi.png',
+        'assets/imgs/regions/tbilisi/mtatsminda.jpg',
+        'assets/imgs/regions/tbilisi/sameba.jpg',
+        'assets/imgs/regions/tbilisi/tbilisi-night.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/tbilisi/cuisine/georgian-bread-and-salt.jpg',
       ],
       tag: 'Culture',
       shortDescription: 'Wander sulfur bath districts, frescoed churches, and rooftop terraces of this ancient crossroads city.',
@@ -79,11 +97,21 @@ export class TourService {
       region: 'Kazbegi',
       duration: '3 Days',
       price: 720,
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+      image: 'assets/imgs/regions/mtskheta-mtianeti/gergeti-trinity.jpg',
       images: [
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
+        'assets/imgs/regions/mtskheta-mtianeti/gergeti-trinity.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/kazbegi.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/ananuri-castle.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/aragvi-valley.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/gudauri.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/svetitskhoveli.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/shio-mghvime.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/mtskheta-mtianeti/cuisine/khinkali.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/cuisine/khinkali-on-fire.jpeg',
+        'assets/imgs/regions/mtskheta-mtianeti/cuisine/dambal-khacho.jpg',
+        'assets/imgs/regions/mtskheta-mtianeti/cuisine/mtskheta-gvezeli.webp',
       ],
       tag: 'Mountains',
       shortDescription: 'Drive the legendary Georgian Military Highway to Gergeti Trinity Church, perched above the clouds.',
@@ -92,32 +120,22 @@ export class TourService {
     },
     {
       id: 5,
-      title: 'Racha Hidden Valley',
-      region: 'Racha',
-      duration: '5 Days',
-      price: 1250,
-      image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
-      images: [
-        'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-      ],
-      tag: 'Off-the-beaten-path',
-      shortDescription: 'Discover Georgia\'s best-kept secret — emerald rivers, walnut forests, and rare Khvanchkara wine.',
-      highlights: ['Shaori reservoir kayak', 'Nikortsminda cathedral', 'Wild walnut forest hike', 'Khvanchkara wine estate'],
-      groupSize: '2–6 guests'
-    },
-    {
-      id: 6,
       title: 'Vardzia Cave City & Borjomi Spa',
       region: 'Samtskhe-Javakheti',
       duration: '4 Days',
       price: 890,
-      image: 'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
+      image: 'assets/imgs/regions/samtskhe-javakheti/vardzia.jpg',
       images: [
-        'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        'assets/imgs/regions/samtskhe-javakheti/vardzia.jpg',
+        'assets/imgs/regions/samtskhe-javakheti/borjomi-park.jpg',
+        'assets/imgs/regions/samtskhe-javakheti/rabati.jpg',
+        'assets/imgs/regions/samtskhe-javakheti/sapara-monastery.jpg',
+        'assets/imgs/regions/samtskhe-javakheti/matskhane-monastery.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/samtskhe-javakheti/cuisine/meskhi-khachapuri.png',
+        'assets/imgs/regions/samtskhe-javakheti/cuisine/meskhi-kada.jpg',
+        'assets/imgs/regions/samtskhe-javakheti/cuisine/tenili-cheese.jpg',
       ],
       tag: 'Heritage',
       shortDescription: 'Explore the rock-hewn cave monastery of Vardzia, then rejuvenate in legendary Borjomi mineral springs.',
@@ -125,40 +143,119 @@ export class TourService {
       groupSize: '2–8 guests'
     },
     {
-      id: 7,
-      title: 'Vardzia Cavdsfgdsfgdsfgsdfge City & Borjomi Spa',
-      region: 'Samtskhedsgdsfg-Javakheti',
-      duration: '4 Dadsfgdsfgdsfgys',
-      price: 890,
-      image: 'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
+      id: 6,
+      title: 'Adjara Black Sea & Highlands',
+      region: 'Adjara',
+      duration: '4 Days',
+      price: 850,
+      image: 'assets/imgs/regions/adjara/batumi.jpg',
       images: [
-        'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+        'assets/imgs/regions/adjara/batumi.jpg',
+        'assets/imgs/regions/adjara/black-sea-coast.jpg',
+        'assets/imgs/regions/adjara/gonio.jpg',
+        'assets/imgs/regions/adjara/gonio-fortress.jpg',
       ],
-      tag: 'Heritage',
-      shortDescription: 'Expdsfgdsfgdsfgdsflore the rock-hewn cave monastery of Vardzia, then rejuvenate in legendary Borjomi mineral springs.',
-      highlights: ['Vardzdsfgdsfgia cave city exploration', 'Borjomi mineral water park', 'Rabati Castle', 'Green Monastery at Sapara'],
-      groupSize: '2–8 guegdsfgdsfgsts'
+      cuisine: [
+        'assets/imgs/regions/adjara/cuisine/adjarian-khachapuri.jpg',
+        'assets/imgs/regions/adjara/cuisine/adjarian-baklava.jpg',
+        'assets/imgs/regions/adjara/cuisine/barabulka.jpg',
+        'assets/imgs/regions/adjara/cuisine/fish-platter.jpg',
+      ],
+      tag: 'Beach & Mountains',
+      shortDescription: 'From Batumi\'s palm-lined boulevards to ancient Greek fortresses and wild Adjarian mountain gorges.',
+      highlights: ['Batumi Old Town & boulevard', 'Black Sea sunset cruise', 'Gonio-Apsaros Roman fortress', 'Makhuntseti waterfall hike'],
+      groupSize: '2–10 guests'
+    },
+    {
+      id: 7,
+      title: 'Imereti Caves & Monasteries',
+      region: 'Imereti',
+      duration: '3 Days',
+      price: 680,
+      image: 'assets/imgs/regions/imereti/prometheus-cave.jpg',
+      images: [
+        'assets/imgs/regions/imereti/prometheus-cave.jpg',
+        'assets/imgs/regions/imereti/gelati-monastery.jpg',
+        'assets/imgs/regions/imereti/sataplia-reserve.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/imereti/cuisine/imeruli-khachapuri.webp',
+        'assets/imgs/regions/imereti/cuisine/tabaka-chicken.jpg',
+        'assets/imgs/regions/imereti/cuisine/imeruli-pkhali.webp',
+        'assets/imgs/regions/imereti/cuisine/imeruli-surneli.jpeg',
+      ],
+      tag: 'Culture',
+      shortDescription: 'Glittering caves, medieval UNESCO monasteries, and dinosaur footprints in the heartland of Georgia.',
+      highlights: ['Prometheus Cave boat ride', 'Gelati Monastery (UNESCO)', 'Sataplia dinosaur reserve', 'Kutaisi old town walk'],
+      groupSize: '2–8 guests'
     },
     {
       id: 8,
-      title: 'testi 123',
-      region: 'Samtskhedsgdfsgsfdgdsgdsfg-Javakheti',
-      duration: '4 Dadsfgdfgdfsgdsgdfsgsfgdsfgys',
-      price: 890,
-      image: 'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
+      title: 'Samegrelo Ancient Colchis',
+      region: 'Samegrelo',
+      duration: '4 Days',
+      price: 920,
+      image: 'assets/imgs/regions/samegrelo/martvili.jpg',
       images: [
-        'https://images.unsplash.com/photo-1518623489648-a173ef7824f3?w=800&q=80',
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-        
+        'assets/imgs/regions/samegrelo/martvili.jpg',
+        'assets/imgs/regions/samegrelo/martvili-2.jpg',
+        'assets/imgs/regions/samegrelo/dadiani-palace.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/samegrelo/cuisine/megruli-khachapuri.webp',
+        'assets/imgs/regions/samegrelo/cuisine/megruli-kuchmachi.webp',
+        'assets/imgs/regions/samegrelo/cuisine/ghomi-and-kharcho.webp',
       ],
       tag: 'Heritage',
-      shortDescription: 'Expdsfgdsfgdsfgdsflore the rock-hewn cave monastery of Vardzia, then rejuvenate in legendary Borjomi mineral springs.',
-      highlights: ['Vardzdsfgdsfgia cave city exploration', 'Borjomi mineral water park', 'Rabati Castle', 'Green Monastery at Sapara'],
-      groupSize: '2–8 guegdsfgdsfgsts'
-    }
+      shortDescription: 'Paddle through emerald canyon pools, explore the palace of the last Megrelian princes, and taste Georgia\'s spiciest cuisine.',
+      highlights: ['Martvili canyon kayak', 'Dadiani Palace museum', 'Nokalakevi ancient fortress', 'Megrelian feast with local family'],
+      groupSize: '2–8 guests'
+    },
+    {
+      id: 9,
+      title: 'Kvemo Kartli Canyon Adventure',
+      region: 'Kvemo Kartli',
+      duration: '3 Days',
+      price: 750,
+      image: 'assets/imgs/regions/kvemo-kartli/dashbashi-canyon.jpg',
+      images: [
+        'assets/imgs/regions/kvemo-kartli/dashbashi-canyon.jpg',
+        'assets/imgs/regions/kvemo-kartli/dashbashi-glass-bridge.jpg',
+        'assets/imgs/regions/kvemo-kartli/kveshi-fortress.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/kvemo-kartli/cuisine/lamb-mtsvadi.jpg',
+        'assets/imgs/regions/kvemo-kartli/cuisine/chaqapuli.jpg',
+        'assets/imgs/regions/kvemo-kartli/cuisine/guda-cheese.jpg',
+      ],
+      tag: 'Adventure',
+      shortDescription: 'Stand on Georgia\'s glass-floor bridge over Dashbashi Canyon, explore medieval fortresses, and discover the multi-ethnic south.',
+      highlights: ['Dashbashi Canyon glass bridge', 'Kveshi Fortress hike', 'Rustavi city tour', 'Multi-ethnic village visit'],
+      groupSize: '2–8 guests'
+    },
+    {
+      id: 10,
+      title: 'Shida Kartli History & Legends',
+      region: 'Shida Kartli',
+      duration: '3 Days',
+      price: 710,
+      image: 'assets/imgs/regions/shida-kartli/uplistsikhe.jpg',
+      images: [
+        'assets/imgs/regions/shida-kartli/uplistsikhe.jpg',
+        'assets/imgs/regions/shida-kartli/uplistsikhe-2.jpg',
+        'assets/imgs/regions/shida-kartli/gori-fortress.jpg',
+        'assets/imgs/regions/shida-kartli/stalin-museum.jpg',
+        'assets/imgs/regions/shida-kartli/stalin-wagon.jpg',
+      ],
+      cuisine: [
+        'assets/imgs/regions/shida-kartli/cuisine/gori-cutlet.jpg',
+        'assets/imgs/regions/shida-kartli/cuisine/chakrakina.jpg',
+      ],
+      tag: 'Heritage',
+      shortDescription: 'Walk through a 3,000-year-old cave city, climb a medieval hilltop fortress, and explore the controversial legacy of Stalin\'s birthplace.',
+      highlights: ['Uplistsikhe cave city', 'Gori Fortress panorama', 'Stalin Museum & personal railcar', 'Surami Fortress sunset'],
+      groupSize: '2–10 guests'
+    },
   ];
 
   getTours(): Tour[] {

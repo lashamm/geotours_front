@@ -83,6 +83,19 @@
           </li>
         </ul>
       </div>
+
+      @if (tour.cuisine && tour.cuisine.length) {
+        <div class="section cuisine-section">
+          <div class="section-eyebrow">Local Cuisine</div>
+          <div class="cuisine-grid">
+            @for (img of tour.cuisine; track img) {
+              <div class="cuisine-item">
+                <img [src]="img" alt="Local dish" loading="lazy">
+              </div>
+            }
+          </div>
+        </div>
+      }
     </div>
 
     <aside class="details-aside">

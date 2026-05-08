@@ -16,11 +16,24 @@
   }
 }
 
-.footer-brand {
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-display);
   font-size: 1.4rem;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
+}
+
+.footer-crown {
+  width: 28px;
+  height: 20px;
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.footer-brand {
   .logo-main  { color: var(--color-text); }
   .logo-accent { color: var(--color-gold); }
 

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Tour } from '../../services/tour';
-
 @Component({
   selector: 'app-tour-card',
   standalone: true,

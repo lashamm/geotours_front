@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>GeoTours — Boutique Travel in Georgia</title>
+  <title>Vardotour — VIP Transportation Georgia</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -16,9 +16,9 @@
   <!-- loading screen -->
   <div id="appLoader" class="app-loader">
     <div class="app-loader__inner">
-      <div class="app-loader__logo">GEO<span>TOURS</span></div>
+      <div class="app-loader__logo">VARDO<span>TOUR</span></div>
       <div class="app-loader__ring"></div>
-      <div class="app-loader__sub">Crafting your journey</div>
+      <div class="app-loader__sub">VIP Transportation Georgia</div>
     </div>
   </div>
 
@@ -53,17 +53,6 @@
         clearTimeout(t);
         t = setTimeout(function () { toast.classList.remove('show'); }, 2200);
       };
-
-      // auto-toast on language switch (no TS changes needed)
-      document.addEventListener('click', function (e) {
-        var btn = e.target && e.target.closest && e.target.closest('.lang-switch button');
-        if (!btn) return;
-        var label = btn.textContent.trim();
-        var msg = label === 'GEO' ? 'ენა შეიცვალა' :
-                  label === 'RU'  ? 'Язык изменён' :
-                                    'Language updated';
-        window.showToast(msg);
-      });
     })();
   </script>
 </body>

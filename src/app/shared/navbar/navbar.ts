@@ -3,6 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 
+export type LangCode = 'en' | 'geo' | 'ru' | 'ar' | 'es' | 'fr' | 'it' | 'de' | 'zh' | 'tr';
+
+export interface LangOption {
+  code: LangCode;
+  label: string;
+  short: string;
+}
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -13,7 +21,21 @@ import { Subscription, filter } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   open = false;
   scrolled = false;
-  language: 'en' | 'geo' | 'ru' = 'en';
+  langOpen = false;
+  language: LangCode = 'en';
+
+  readonly languages: LangOption[] = [
+    { code: 'geo', label: 'ქართული',  short: 'ქარ' },
+    { code: 'en',  label: 'English',   short: 'EN'  },
+    { code: 'ru',  label: 'Русский',   short: 'RU'  },
+    { code: 'ar',  label: 'عربي',      short: 'عر'  },
+    { code: 'es',  label: 'Español',   short: 'ES'  },
+    { code: 'fr',  label: 'Français',  short: 'FR'  },
+    { code: 'it',  label: 'Italiano',  short: 'IT'  },
+    { code: 'de',  label: 'Deutsch',   short: 'DE'  },
+    { code: 'zh',  label: '中文',      short: '中'   },
+    { code: 'tr',  label: 'Türkçe',   short: 'TR'  },
+  ];
 
   private storedScrollY = 0;
   private routerSub?: Subscription;
@@ -21,12 +43,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const saved = localStorage.getItem('lang') as 'en' | 'geo' | 'ru';
-    if (saved) this.language = saved;
-
+    const saved = localStorage.getItem('lang') as LangCode;
+    if (saved && this.languages.find(l => l.code === saved)) this.language = saved;
+    this.applyDir();
     this.scrolled = window.scrollY > 30;
-
-    // close drawer on every route change
     this.routerSub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => this.closeMenu());
@@ -38,16 +58,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:scroll')
-  onScroll() {
-    this.scrolled = window.scrollY > 30;
-  }
+  onScroll() { this.scrolled = window.scrollY > 30; }
 
   @HostListener('document:keydown.escape')
-  onEsc() { if (this.open) this.closeMenu(); }
-
-  toggleMenu() {
-    this.open ? this.closeMenu() : this.openMenu();
+  onEsc() {
+    if (this.open) this.closeMenu();
+    if (this.langOpen) this.langOpen = false;
   }
+
+  @HostListener('document:click', ['$event'])
+  onDocClick(e: Event) {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.lang-dropdown')) this.langOpen = false;
+  }
+
+  toggleMenu() { this.open ? this.closeMenu() : this.openMenu(); }
 
   private openMenu() {
     this.storedScrollY = window.scrollY;
@@ -62,7 +87,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     window.scrollTo(0, this.storedScrollY);
   }
 
-  /** Bulletproof scroll-lock that survives mobile Safari and address-bar resize. */
   private lockBody(y: number) {
     const b = document.body;
     b.style.position = 'fixed';
@@ -83,18 +107,35 @@ export class NavbarComponent implements OnInit, OnDestroy {
     b.classList.remove('nav-open');
   }
 
-  setLanguage(lang: 'en' | 'geo' | 'ru') {
+  setLanguage(lang: LangCode) {
     this.language = lang;
+    this.langOpen = false;
     localStorage.setItem('lang', lang);
+    this.applyDir();
     window.dispatchEvent(new CustomEvent('lang-change', { detail: lang }));
   }
 
+  private applyDir() {
+    document.documentElement.dir = this.language === 'ar' ? 'rtl' : 'ltr';
+  }
+
+  get currentLang(): LangOption {
+    return this.languages.find(l => l.code === this.language) ?? this.languages[1];
+  }
+
   get t() {
-    const map = {
-      en:  { home: 'Home',     tours: 'Tours',   about: 'About',         contact: 'Contact'  },
-      geo: { home: 'მთავარი',   tours: 'ტურები',  about: 'ჩვენ შესახებ',  contact: 'კონტაქტი' },
-      ru:  { home: 'Главная',  tours: 'Туры',    about: 'О нас',         contact: 'Контакты' }
-    } as const;
+    const map: Record<LangCode, { home: string; tours: string; about: string; contact: string }> = {
+      geo: { home: 'მთავარი',    tours: 'ტურები',   about: 'ჩვენ შესახებ', contact: 'კონტაქტი'  },
+      en:  { home: 'Home',       tours: 'Tours',     about: 'About',         contact: 'Contact'    },
+      ru:  { home: 'Главная',    tours: 'Туры',      about: 'О нас',         contact: 'Контакты'   },
+      ar:  { home: 'الرئيسية',  tours: 'الجولات',   about: 'من نحن',        contact: 'اتصل بنا'  },
+      es:  { home: 'Inicio',     tours: 'Tours',     about: 'Nosotros',      contact: 'Contacto'   },
+      fr:  { home: 'Accueil',    tours: 'Tours',     about: 'À propos',      contact: 'Contact'    },
+      it:  { home: 'Home',       tours: 'Tour',      about: 'Chi siamo',     contact: 'Contatti'   },
+      de:  { home: 'Startseite', tours: 'Touren',    about: 'Über uns',      contact: 'Kontakt'    },
+      zh:  { home: '首页',        tours: '旅游',      about: '关于我们',       contact: '联系我们'    },
+      tr:  { home: 'Ana Sayfa',  tours: 'Turlar',    about: 'Hakkımızda',    contact: 'İletişim'   },
+    };
     return map[this.language];
   }
 }

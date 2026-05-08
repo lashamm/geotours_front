@@ -1,21 +1,47 @@
 <header class="nav" [class.scrolled]="scrolled" [class.menu-open]="open">
   <div class="nav-inner">
     <a routerLink="/" class="nav-logo" (click)="closeMenu()">
-      GEO<span>TOURS</span>
+      <svg class="crown-icon" viewBox="0 0 100 70" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="40" r="7"/>
+        <circle cx="50" cy="10" r="7"/>
+        <circle cx="90" cy="40" r="7"/>
+        <polygon points="10,40 10,62 90,62 90,40 70,14 50,40 30,14"/>
+        <rect x="10" y="62" width="80" height="10" rx="3"/>
+      </svg>
+      VARDO<span>TOUR</span>
     </a>
 
     <nav class="nav-links" aria-label="Primary">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t.home }}</a>
       <a routerLink="/tours" routerLinkActive="active">{{ t.tours }}</a>
       <a routerLink="/" fragment="about">{{ t.about }}</a>
-      <a routerLink="/" fragment="contact">{{ t.contact }}</a>
+      <a routerLink="./contact" routerLinkActive="active">{{ t.contact }}</a>
     </nav>
 
     <div class="nav-right">
-      <div class="lang-switch desktop-only">
-        <button (click)="setLanguage('en')"  [class.active]="language==='en'">EN</button>
-        <button (click)="setLanguage('geo')" [class.active]="language==='geo'">GEO</button>
-        <button (click)="setLanguage('ru')"  [class.active]="language==='ru'">RU</button>
+      <!-- Desktop language dropdown -->
+      <div class="lang-dropdown desktop-only" [class.open]="langOpen">
+        <button class="lang-trigger" (click)="langOpen = !langOpen; $event.stopPropagation()" aria-label="Select language">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="lang-trigger-short">{{ currentLang.short }}</span>
+          <svg class="lang-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="lang-menu">
+          @for (lang of languages; track lang.code) {
+            <button
+              class="lang-option"
+              [class.active]="language === lang.code"
+              (click)="setLanguage(lang.code); $event.stopPropagation()">
+              <span class="lang-option-short">{{ lang.short }}</span>
+              <span class="lang-option-label">{{ lang.label }}</span>
+            </button>
+          }
+        </div>
       </div>
 
       <button class="burger" [class.open]="open" (click)="toggleMenu()" aria-label="Menu">
@@ -33,18 +59,18 @@
       <a routerLink="/" (click)="closeMenu()">{{ t.home }}</a>
       <a routerLink="/tours" (click)="closeMenu()">{{ t.tours }}</a>
       <a routerLink="/" fragment="about" (click)="closeMenu()">{{ t.about }}</a>
-      <a routerLink="/" fragment="contact" (click)="closeMenu()">{{ t.contact }}</a>
+      <a routerLink="/contact" (click)="closeMenu()">{{ t.contact }}</a>
     </nav>
 
     <div class="mobile-lang">
-      <button (click)="setLanguage('en')"  [class.active]="language==='en'">English</button>
-      <button (click)="setLanguage('geo')" [class.active]="language==='geo'">ქართული</button>
-      <button (click)="setLanguage('ru')"  [class.active]="language==='ru'">Русский</button>
+      @for (lang of languages; track lang.code) {
+        <button [class.active]="language === lang.code" (click)="setLanguage(lang.code)">{{ lang.label }}</button>
+      }
     </div>
 
     <div class="mobile-foot">
-      <a href="tel:+995320000000">+995 32 000 000</a>
-      <a href="mailto:hello@geotours.ge">hello@geotours.ge</a>
+      <a href="tel:+995555111211">+995 555 111 211</a>
+      <a href="https://wa.me/995555111211" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </div>

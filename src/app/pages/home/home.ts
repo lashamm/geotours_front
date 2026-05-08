@@ -142,14 +142,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       why: 'რატომ ჩვენ',
       difference: 'ჩვენი უპირატესობა',
 
-      w1Title: 'ბუტიკური',
-      w1Text: 'პატარა ჯგუფები.',
-      w2Title: 'ადგილობრივი',
-      w2Text: 'ადგილობრივი გიდები.',
-      w3Title: 'ინდივიდუალური',
-      w3Text: 'თქვენზე მორგებული.',
-      w4Title: 'მხარდაჭერა',
-      w4Text: 'სრული მხარდაჭერა.',
+      w1Title: 'ტრასფერები აეროპორტიდან',
+      w1Text: 'კომფორტული ტრასფერი საქართველოს ნებისმიერ წერტილში .',
+      w2Title: 'ტურები საქართველოში',
+      w2Text: 'ერთდღიანი და მრავალდღიანი ტურები საქართველოს ყველა რეგიონში ',
+      w3Title: 'საერთაშორისო ტრანსფერი',
+      w3Text: 'ტრანსფერი სომხეთში, აზერბაიჯანსა და თურქეთში — კომფორტული და უსაფრთხო.',
 
       contact: 'დაგვიკავშირდით',
       begin: 'დაიწყეთ მოგზაურობა',
@@ -168,7 +166,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       fleetSub: 'სამი კლასი ყოველი გზისთვის.',
       vClass: 'Mercedes V-Class', vClassDesc: '7 კაცამდე. ფართო და დახვეწილი.',
       sClass: 'Mercedes S-Class', sClassDesc: 'კერძო გადაყვანის სრულყოფილება.',
-      toyota: 'პრემიუმ 4×4', toyotaDesc: 'სადაც გზა მთავრდება, მოგზაურობა გრძელდება.',
+      // toyota: 'პრემიუმ 4×4', toyotaDesc: 'სადაც გზა მთავრდება, მოგზაურობა გრძელდება.',
     },
 
     ru: {
@@ -202,8 +200,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       w2Text: 'Местные гиды.',
       w3Title: 'Индивидуально',
       w3Text: 'Под вас.',
-      w4Title: 'Поддержка',
-      w4Text: 'Полная поддержка.',
 
       contact: 'Свяжитесь с нами',
       begin: 'Начните путешествие',

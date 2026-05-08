@@ -465,19 +465,215 @@
 }
 
 .cuisine-item {
+  position: relative;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  border: 1px solid rgba(201, 169, 110, 0.12);
+  border: 1px solid rgba(120, 197, 224, 0.12);
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  width: 100%;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    display: block;
   }
 
   &:hover img { transform: scale(1.06); }
+
+  &:hover .cuisine-label { opacity: 1; transform: translateY(0); }
+  &:hover .cuisine-hover-hint { opacity: 1; }
+}
+
+.cuisine-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.7rem 0.6rem;
+  background: linear-gradient(to top, rgba(3,4,11,0.92), transparent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cuisine-hover-hint {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(3,4,11,0.55);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+// ─── Cuisine Modal ────────────────────────────────────────────────────────────
+
+.cuisine-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(3, 4, 11, 0.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.cuisine-modal {
+  position: relative;
+  background: #07091a;
+  border: 1px solid rgba(120, 197, 224, 0.18);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 560px;
+  width: 100%;
+  animation: modalUp 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cuisine-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(3,4,11,0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover { background: var(--color-gold); color: var(--color-dark); }
+}
+
+.cuisine-modal-img-wrap {
+  height: 280px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 500px) { height: 200px; }
+}
+
+.cuisine-modal-body {
+  padding: 1.75rem 2rem 2rem;
+}
+
+.cuisine-modal-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.cuisine-modal-desc {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(228, 238, 248, 0.72);
+}
+
+// ─── Reviews ─────────────────────────────────────────────────────────────────
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: rgba(120, 197, 224, 0.04);
+  border: 1px solid rgba(120, 197, 224, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold-deep), var(--color-gold));
+  color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.review-meta { flex: 1; }
+
+.review-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.review-sub {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  margin-top: 0.15rem;
+}
+
+.review-stars {
+  display: flex;
+  gap: 0.1rem;
+}
+
+.star {
+  color: var(--color-gold);
+  font-size: 0.95rem;
+}
+
+.review-comment {
+  font-size: 0.87rem;
+  line-height: 1.75;
+  color: rgba(228, 238, 248, 0.72);
 }
 
 // ─── Aside Card ──────────────────────────────────────────────────────────────

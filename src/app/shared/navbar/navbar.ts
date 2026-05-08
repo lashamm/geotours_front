@@ -1,9 +1,8 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
-
-export type LangCode = 'en' | 'geo' | 'ru' | 'ar' | 'es' | 'fr' | 'it' | 'de' | 'zh' | 'tr';
+import { LanguageService, LangCode } from '../../services/language.service';
 
 export interface LangOption {
   code: LangCode;
@@ -40,12 +39,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private storedScrollY = 0;
   private routerSub?: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private ls: LanguageService) {
+    effect(() => { this.language = this.ls.lang(); });
+  }
 
   ngOnInit() {
-    const saved = localStorage.getItem('lang') as LangCode;
-    if (saved && this.languages.find(l => l.code === saved)) this.language = saved;
-    this.applyDir();
     this.scrolled = window.scrollY > 30;
     this.routerSub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
@@ -108,15 +106,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   setLanguage(lang: LangCode) {
-    this.language = lang;
+    this.ls.set(lang);
     this.langOpen = false;
-    localStorage.setItem('lang', lang);
-    this.applyDir();
-    window.dispatchEvent(new CustomEvent('lang-change', { detail: lang }));
-  }
-
-  private applyDir() {
-    document.documentElement.dir = this.language === 'ar' ? 'rtl' : 'ltr';
   }
 
   get currentLang(): LangOption {

@@ -1,0 +1,98 @@
+<div class="about-page">
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-dim"></div>
+    <div class="container hero-content">
+      <p class="section-label">{{ T.label }}</p>
+      <h1 class="hero-title">{{ T.title }}<br><em>{{ T.title2 }}</em></h1>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat">
+        <div class="stat-num">{{ T.stat1Num }}</div>
+        <div class="stat-label">{{ T.stat1Label }}</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">{{ T.stat2Num }}</div>
+        <div class="stat-label">{{ T.stat2Label }}</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">{{ T.stat3Num }}</div>
+        <div class="stat-label">{{ T.stat3Label }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="story section">
+    <div class="container story-grid">
+      <div class="story-img-wrap">
+        <img src="assets/imgs/regions/tbilisi/old-tbilisi.png" alt="Georgia landscape" class="story-img">
+        <div class="story-badge">
+          <svg viewBox="0 0 100 70" fill="currentColor"><circle cx="10" cy="40" r="7"/><circle cx="50" cy="10" r="7"/><circle cx="90" cy="40" r="7"/><polygon points="10,40 10,62 90,62 90,40 70,14 50,40 30,14"/><rect x="10" y="62" width="80" height="10" rx="3"/></svg>
+        </div>
+      </div>
+      <div class="story-text">
+        <p>{{ T.p1 }}</p>
+        <p>{{ T.p2 }}</p>
+        <p>{{ T.p3 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values section">
+    <div class="container">
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>{{ T.v1Title }}</h3>
+          <p>{{ T.v1Text }}</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>{{ T.v2Title }}</h3>
+          <p>{{ T.v2Text }}</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3>{{ T.v3Title }}</h3>
+          <p>{{ T.v3Text }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Slider -->
+  <section class="fleet-slider section">
+    <div class="container">
+      <p class="section-label" style="text-align:center">{{ T.fleet }}</p>
+      <h2 class="section-title" style="text-align:center">{{ T.fleetTitle }}</h2>
+      <div class="divider" style="margin: 0 auto 2.5rem"></div>
+      <app-car-slider></app-car-slider>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta section">
+    <div class="container cta-inner">
+      <h2 class="section-title">{{ T.cta }}</h2>
+      <div class="divider" style="margin: 0 auto 2rem"></div>
+      <a routerLink="/contact" class="btn-primary">{{ T.ctaBtn }}</a>
+    </div>
+  </section>
+
+</div>

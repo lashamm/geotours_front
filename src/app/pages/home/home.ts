@@ -1,31 +1,27 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TourService, Tour } from '../../services/tour';
+import { LanguageService, LangCode } from '../../services/language.service';
+import { CarSliderComponent } from '../../shared/car-slider/car-slider';
+
+type SupportedLang = 'en' | 'geo' | 'ru';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CarSliderComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  // 🌍 LANGUAGE
-  language: 'en' | 'geo' | 'ru' = 'en';
+  language: LangCode = 'en';
 
-  setLanguage(lang: 'en' | 'geo' | 'ru') {
-    this.language = lang;
-    localStorage.setItem('lang', lang);
-  }
-
-  // 🎯 TOURS
   featuredTours: Tour[] = [];
   currentSlide = 0;
   private slideInterval: any;
 
-  // 📊 STATS (can also translate if you want later)
   stats = [
     { value: '120+', label: 'Tours Completed' },
     { value: '98%',  label: 'Guest Satisfaction' },
@@ -33,13 +29,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     { value: '40+',  label: 'Hidden Destinations' }
   ];
 
-  constructor(private tourService: TourService) {}
+  constructor(private tourService: TourService, private ls: LanguageService) {
+    effect(() => { this.language = this.ls.lang(); });
+  }
 
   ngOnInit() {
-    // load saved language
-    const savedLang = localStorage.getItem('lang') as 'en' | 'geo' | 'ru';
-    if (savedLang) this.language = savedLang;
-
     this.featuredTours = this.tourService.getFeaturedTours(3);
     this.startSlider();
   }
@@ -60,8 +54,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.startSlider();
   }
 
-  // 🌐 TRANSLATIONS
-  translations = {
+  /** Falls back to English for languages not yet fully translated on this page */
+  private get lk(): SupportedLang {
+    const s: SupportedLang[] = ['en', 'geo', 'ru'];
+    return s.includes(this.language as SupportedLang) ? (this.language as SupportedLang) : 'en';
+  }
+
+  get translations() { return this._translations; }
+
+  private _translations = {
     en: {
       welcome: 'Welcome to Georgia',
       heroTitle: 'Where Ancient',
@@ -106,13 +107,20 @@ export class HomeComponent implements OnInit, OnDestroy {
       email: 'Email Address',
       tourSelect: 'Tour of Interest',
       message: 'Tell us about your trip...',
-      send: 'Send Enquiry'
+      send: 'Send Enquiry',
+
+      fleet: 'Our Fleet',
+      fleetTitle: 'Comfort at Every Altitude',
+      fleetSub: 'Three vehicle classes for every terrain — each impeccably maintained for long-distance luxury.',
+      vClass: 'Mercedes V-Class', vClassDesc: 'Groups up to 7. Spacious & refined.',
+      sClass: 'Mercedes S-Class', sClassDesc: 'The pinnacle of private luxury transfer.',
+      toyota: 'Premium 4×4', toyotaDesc: 'Where roads end, the journey continues.',
     },
 
     geo: {
       welcome: 'კეთილი იყოს თქვენი მობრძანება საქართველოში',
-      heroTitle: 'სადაც ძველი',
-      heroTitle2: 'შეხვდება მარადიულს',
+      heroTitle: 'მოიარე საქართველო',
+      heroTitle2: 'ვარდოსთან ერთად',
       heroSub: 'დახვეწილი მოგზაურობები კავკასიაში — მყინვარული მწვერვალებიდან წმინდა მონასტრებამდე.',
       explore: 'ტურების ნახვა',
       story: 'ჩვენ შესახებ',
@@ -153,7 +161,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       email: 'ელფოსტა',
       tourSelect: 'აირჩიეთ ტური',
       message: 'აღწერეთ მოგზაურობა...',
-      send: 'გაგზავნა'
+      send: 'გაგზავნა',
+
+      fleet: 'ჩვენი ფლოტი',
+      fleetTitle: 'კომფორტი ყოველ სიმაღლეზე',
+      fleetSub: 'სამი კლასი ყოველი გზისთვის.',
+      vClass: 'Mercedes V-Class', vClassDesc: '7 კაცამდე. ფართო და დახვეწილი.',
+      sClass: 'Mercedes S-Class', sClassDesc: 'კერძო გადაყვანის სრულყოფილება.',
+      toyota: 'პრემიუმ 4×4', toyotaDesc: 'სადაც გზა მთავრდება, მოგზაურობა გრძელდება.',
     },
 
     ru: {
@@ -200,8 +215,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       email: 'Email',
       tourSelect: 'Выберите тур',
       message: 'Опишите поездку...',
-      send: 'Отправить'
+      send: 'Отправить',
+
+      fleet: 'Наш автопарк',
+      fleetTitle: 'Комфорт на любой высоте',
+      fleetSub: 'Три класса автомобилей для любого маршрута.',
+      vClass: 'Mercedes V-Class', vClassDesc: 'До 7 человек. Просторно и изысканно.',
+      sClass: 'Mercedes S-Class', sClassDesc: 'Вершина частного трансфера.',
+      toyota: 'Премиум 4×4', toyotaDesc: 'Там где дорога заканчивается — путешествие продолжается.',
     }
   };
 
+  get T() { return this._translations[this.lk]; }
 }

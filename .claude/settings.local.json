@@ -69,7 +69,10 @@
       "Bash(cp -r \"c:/Users/maisu/Documents/geotours_front/src/assets/imgs/regions/imereti\" \"c:/Users/maisu/Documents/geotours_front/public/assets/imgs/regions/\")",
       "Bash(cp -r \"c:/Users/maisu/Documents/geotours_front/src/assets/imgs/regions/samegrelo\" \"c:/Users/maisu/Documents/geotours_front/public/assets/imgs/regions/\")",
       "Bash(cp -r \"c:/Users/maisu/Documents/geotours_front/src/assets/imgs/regions/kvemo-kartli\" \"c:/Users/maisu/Documents/geotours_front/public/assets/imgs/regions/\")",
-      "Bash(cp -r \"c:/Users/maisu/Documents/geotours_front/src/assets/imgs/regions/shida-kartli\" \"c:/Users/maisu/Documents/geotours_front/public/assets/imgs/regions/\")"
+      "Bash(cp -r \"c:/Users/maisu/Documents/geotours_front/src/assets/imgs/regions/shida-kartli\" \"c:/Users/maisu/Documents/geotours_front/public/assets/imgs/regions/\")",
+      "Bash(npx ng *)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\maisu\\\\Documents\\\\geotours_front\\\\src\\\\assets\\\\imgs\\\\\" -Recurse -ErrorAction SilentlyContinue | Select-Object FullName)",
+      "Bash(npx tsc *)"
     ]
   }
 }

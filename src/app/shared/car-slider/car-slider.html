@@ -1,0 +1,74 @@
+<div class="cs-wrap">
+  <div class="cs-stage">
+    @for (car of cars; track car.id; let i = $index) {
+      <div class="cs-slide" [class.active]="i === activeIndex">
+        <div class="cs-img-wrap">
+          <img [src]="car.image" [alt]="car.name" class="cs-img">
+        </div>
+        <div class="cs-info">
+          <span class="cs-tag">{{ car.tag }}</span>
+          <h3 class="cs-name">{{ car.name }}</h3>
+          <p class="cs-desc">{{ car.description }}</p>
+          <button class="cs-btn" (click)="open(car)">
+            {{ t.details }}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9,18 15,12 9,6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <button class="cs-arrow cs-prev" (click)="prev()" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15,18 9,12 15,6"/>
+      </svg>
+    </button>
+    <button class="cs-arrow cs-next" (click)="next()" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9,18 15,12 9,6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="cs-dots">
+    @for (car of cars; track car.id; let i = $index) {
+      <button class="cs-dot" [class.active]="i === activeIndex" (click)="goTo(i)"></button>
+    }
+  </div>
+</div>
+
+@if (selectedCar) {
+  <div class="cs-backdrop" (click)="close()">
+    <div class="cs-modal" (click)="$event.stopPropagation()">
+      <button class="cs-close" (click)="close()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="cs-modal-img">
+        <img [src]="selectedCar.image" [alt]="selectedCar.name">
+      </div>
+
+      <div class="cs-modal-body">
+        <span class="cs-tag">{{ selectedCar.tag }}</span>
+        <h2 class="cs-modal-name">{{ selectedCar.name }}</h2>
+        <p class="cs-modal-desc">{{ selectedCar.description }}</p>
+
+        <ul class="cs-feats">
+          @for (f of selectedCar.features; track $index) {
+            <li>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2.5">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+              {{ f }}
+            </li>
+          }
+        </ul>
+
+        <a routerLink="/contact" class="cs-book" (click)="close()">{{ t.book }}</a>
+      </div>
+    </div>
+  </div>
+}

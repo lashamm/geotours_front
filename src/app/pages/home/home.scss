@@ -438,6 +438,19 @@
   }
 }
 
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: var(--color-text);
+  font-size: .95rem;
+  transition: color var(--transition);
+
+  &:hover { color: var(--color-gold); }
+
+  .whatsapp-icon { color: #25d366; flex-shrink: 0; }
+}
+
 /* ── Buttons ────────────────────────────────────────────── */
 .btn-primary,
 .btn-outline {
@@ -476,6 +489,89 @@
     border-color: var(--color-gold);
     color: var(--color-gold);
     transform: translateY(-3px);
+  }
+}
+
+/* ── Fleet ──────────────────────────────────────────────── */
+.fleet {
+  background: var(--color-charcoal);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fleet-head { text-align: center; }
+
+.fleet-sub {
+  text-align: center;
+  font-size: .9rem;
+  color: var(--color-muted);
+  max-width: 520px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.fleet-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color .3s ease, transform .3s ease;
+
+  &:hover {
+    border-color: rgba(120,197,224,.3);
+    transform: translateY(-5px);
+  }
+}
+
+.fleet-img-wrap {
+  height: 200px;
+  background: #07091a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    max-height: 170px;
+    max-width: 90%;
+    width: auto;
+    object-fit: contain;
+    transition: transform .5s ease;
+  }
+}
+
+.fleet-card:hover .fleet-img-wrap img { transform: scale(1.05); }
+
+.fleet-body {
+  padding: 1.4rem 1.6rem 1.6rem;
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    margin-bottom: .5rem;
+    letter-spacing: .04em;
+  }
+
+  p {
+    font-size: .82rem;
+    line-height: 1.65;
+    color: var(--color-muted);
   }
 }
 

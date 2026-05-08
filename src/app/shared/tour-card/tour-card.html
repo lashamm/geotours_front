@@ -1,25 +1,27 @@
 <article class="tour-card">
   <div class="card-image">
-    <img [src]="tour.image" [alt]="tour.title" loading="lazy">
-    <span class="card-tag">{{ tour.tag }}</span>
+    <img [src]="tour.image" [alt]="ts.title" loading="lazy">
+    <span class="card-tag">{{ ts.tag }}</span>
   </div>
   <div class="card-body">
     <div class="card-meta">
-      <span class="region">{{ tour.region }}</span>
+      <span class="region">{{ ts.region }}</span>
       <span class="duration">{{ tour.duration }}</span>
     </div>
-    <h3 class="card-title">{{ tour.title }}</h3>
-    <p class="card-desc">{{ tour.shortDescription }}</p>
+    <h3 class="card-title">{{ ts.title }}</h3>
+    <p class="card-desc">{{ ts.shortDescription }}</p>
     <ul class="highlights">
-      <li *ngFor="let h of tour.highlights.slice(0, 3)">{{ h }}</li>
+      @for (h of ts.highlights.slice(0, 3); track h) {
+        <li>{{ h }}</li>
+      }
     </ul>
     <div class="card-footer">
       <div class="price">
-        <span class="price-from">From</span>
+        <span class="price-from">{{ T.from }}</span>
         <span class="price-amount">${{ tour.price }}</span>
         <span class="price-per">/ person</span>
       </div>
-      <button (click)="goToDetails()" class="btn-outline card-btn">View Tour</button>
+      <button (click)="goToDetails()" class="btn-outline card-btn">{{ T.viewTour }}</button>
     </div>
   </div>
 </article>

@@ -1,20 +1,15 @@
-@if (tour) {
+@if (tour && ts) {
 <section class="tour-details">
 
-  <!-- Hero with Slider -->
+  <!-- Hero Slider -->
   <div class="hero">
     <div class="hero-media">
       @for (img of tour.images; track img; let i = $index) {
-        <img
-          [src]="img"
-          [alt]="tour.title + ' photo ' + (i + 1)"
-          class="hero-img"
-          [class.active]="i === activeSlide"
-          loading="eager">
+        <img [src]="img" [alt]="ts.title + ' photo ' + (i + 1)"
+             class="hero-img" [class.active]="i === activeSlide" loading="eager">
       }
       <div class="hero-overlay"></div>
 
-      <!-- Slider Controls -->
       @if (tour.images && tour.images.length > 1) {
         <button class="slider-btn slider-prev" (click)="prevSlide()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
@@ -33,12 +28,12 @@
 
     <div class="hero-content">
       <div class="breadcrumb">
-        <span class="breadcrumb-link" routerLink="/tours">Tours</span>
+        <span class="breadcrumb-link" routerLink="/tours">{{ L.tours }}</span>
         <span class="breadcrumb-sep">—</span>
-        <span>{{ tour.region }}</span>
+        <span>{{ ts.region }}</span>
       </div>
-      <span class="hero-tag">{{ tour.tag }}</span>
-      <h1 class="hero-title">{{ tour.title }}</h1>
+      <span class="hero-tag">{{ ts.tag }}</span>
+      <h1 class="hero-title">{{ ts.title }}</h1>
       <div class="hero-meta">
         <div class="meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
@@ -47,83 +42,138 @@
         <div class="meta-divider"></div>
         <div class="meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          {{ tour.region }}
+          {{ ts.region }}
         </div>
       </div>
     </div>
 
     <div class="hero-scroll-hint">
       <div class="scroll-line"></div>
-      <span>Scroll</span>
+      <span>{{ L.scroll }}</span>
     </div>
   </div>
 
   <!-- Sticky Price Bar -->
   <div class="price-bar">
     <div class="price-bar-inner">
-      <div class="price-bar-label">Starting from</div>
-      <div class="price-bar-amount">${{ tour.price }}<span class="price-bar-per"> / person</span></div>
+      <div class="price-bar-label">{{ L.startingFrom }}</div>
+      <div class="price-bar-amount">${{ tour.price }}<span class="price-bar-per"> {{ L.perPerson }}</span></div>
     </div>
-    <button class="btn-primary">Book This Tour</button>
+    <a routerLink="/contact" class="btn-primary">{{ L.book }}</a>
   </div>
 
   <!-- Body -->
   <div class="details-body">
     <div class="details-main">
+
+      <!-- Overview -->
       <div class="section overview-section">
-        <div class="section-eyebrow">Overview</div>
-        <p class="overview-text">{{ tour.shortDescription }}</p>
+        <div class="section-eyebrow">{{ L.overview }}</div>
+        <p class="overview-text">{{ ts.shortDescription }}</p>
       </div>
+
+      <!-- Highlights -->
       <div class="section highlights-section">
-        <div class="section-eyebrow">Highlights</div>
+        <div class="section-eyebrow">{{ L.highlights }}</div>
         <ul class="highlights-list">
-          <li *ngFor="let h of tour.highlights" class="highlight-item">
-            <span class="highlight-dot"></span>
-            <span>{{ h }}</span>
-          </li>
+          @for (h of ts.highlights; track h) {
+            <li class="highlight-item">
+              <span class="highlight-dot"></span>
+              <span>{{ h }}</span>
+            </li>
+          }
         </ul>
       </div>
 
-      @if (tour.cuisine && tour.cuisine.length) {
+      <!-- Cuisine -->
+      @if (tour.cuisineItems && tour.cuisineItems.length) {
         <div class="section cuisine-section">
-          <div class="section-eyebrow">Local Cuisine</div>
+          <div class="section-eyebrow">{{ L.cuisine }}</div>
           <div class="cuisine-grid">
-            @for (img of tour.cuisine; track img) {
-              <div class="cuisine-item">
-                <img [src]="img" alt="Local dish" loading="lazy">
+            @for (item of tour.cuisineItems; track item.image) {
+              <button class="cuisine-item" (click)="openCuisine(item)">
+                <img [src]="item.image" [alt]="cuisineName(item)" loading="lazy">
+                <div class="cuisine-label">{{ cuisineName(item) }}</div>
+                <div class="cuisine-hover-hint">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </div>
+              </button>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Reviews -->
+      @if (tour.reviews && tour.reviews.length) {
+        <div class="section reviews-section">
+          <div class="section-eyebrow">{{ L.reviews }}</div>
+          <div class="reviews-list">
+            @for (r of tour.reviews; track r.name) {
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-avatar">{{ r.initials }}</div>
+                  <div class="review-meta">
+                    <div class="review-name">{{ r.name }}</div>
+                    <div class="review-sub">{{ r.country }} · {{ r.date }}</div>
+                  </div>
+                  <div class="review-stars">
+                    @for (s of stars(r.rating); track $index) {
+                      <span class="star">★</span>
+                    }
+                  </div>
+                </div>
+                <p class="review-comment">{{ reviewComment(r) }}</p>
               </div>
             }
           </div>
         </div>
       }
+
     </div>
 
     <aside class="details-aside">
       <div class="aside-card">
-        <div class="aside-card-header">Quick Info</div>
+        <div class="aside-card-header">{{ L.quickInfo }}</div>
         <div class="info-row">
-          <span class="info-label">Duration</span>
+          <span class="info-label">{{ L.duration }}</span>
           <span class="info-value">{{ tour.duration }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Region</span>
-          <span class="info-value">{{ tour.region }}</span>
+          <span class="info-label">{{ L.region }}</span>
+          <span class="info-value">{{ ts.region }}</span>
         </div>
         <div class="info-row">
-          <span class="info-label">Category</span>
-          <span class="info-value">{{ tour.tag }}</span>
+          <span class="info-label">{{ L.category }}</span>
+          <span class="info-value">{{ ts.tag }}</span>
         </div>
         <div class="aside-divider"></div>
         <div class="aside-price">
-          <span class="aside-price-from">From</span>
+          <span class="aside-price-from">{{ L.from }}</span>
           <span class="aside-price-amount">${{ tour.price }}</span>
-          <span class="aside-price-per">per person</span>
+          <span class="aside-price-per">{{ L.perPerson }}</span>
         </div>
-        <button class="btn-primary btn-full">Book Now</button>
-        <button class="btn-ghost btn-full">Save to Wishlist</button>
+        <a routerLink="/contact" class="btn-primary btn-full">{{ L.book }}</a>
       </div>
     </aside>
   </div>
 
 </section>
+
+<!-- Cuisine Modal -->
+@if (selectedCuisine) {
+  <div class="cuisine-modal-backdrop" (click)="closeCuisine()">
+    <div class="cuisine-modal" (click)="$event.stopPropagation()">
+      <button class="cuisine-modal-close" (click)="closeCuisine()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="cuisine-modal-img-wrap">
+        <img [src]="selectedCuisine.image" [alt]="cuisineName(selectedCuisine)">
+      </div>
+      <div class="cuisine-modal-body">
+        <h3 class="cuisine-modal-name">{{ cuisineName(selectedCuisine) }}</h3>
+        <p class="cuisine-modal-desc">{{ cuisineDesc(selectedCuisine) }}</p>
+      </div>
+    </div>
+  </div>
+}
 }

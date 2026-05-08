@@ -14,8 +14,8 @@
     <nav class="nav-links" aria-label="Primary">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ t.home }}</a>
       <a routerLink="/tours" routerLinkActive="active">{{ t.tours }}</a>
-      <a routerLink="/" fragment="about">{{ t.about }}</a>
-      <a routerLink="./contact" routerLinkActive="active">{{ t.contact }}</a>
+      <a routerLink="/about" routerLinkActive="active">{{ t.about }}</a>
+      <a routerLink="/contact" routerLinkActive="active">{{ t.contact }}</a>
     </nav>
 
     <div class="nav-right">
@@ -58,7 +58,7 @@
     <nav class="mobile-links">
       <a routerLink="/" (click)="closeMenu()">{{ t.home }}</a>
       <a routerLink="/tours" (click)="closeMenu()">{{ t.tours }}</a>
-      <a routerLink="/" fragment="about" (click)="closeMenu()">{{ t.about }}</a>
+      <a routerLink="/about" (click)="closeMenu()">{{ t.about }}</a>
       <a routerLink="/contact" (click)="closeMenu()">{{ t.contact }}</a>
     </nav>
 

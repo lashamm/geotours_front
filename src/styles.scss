@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --color-bg:        #050507;          /* was #040405 — slightly cooler */
-  --color-dark:      #050507;
-  --color-charcoal:  #0b0b0f;
-  --color-text:      #f4f1ea;          /* softer ivory */
-  --color-muted:     #9a958a;          /* was #bdb8ad — less beige, more refined */
-  --color-gold:      #c9a45d;
-  --color-gold-soft: #d8b878;          /* lighter for hover */
-  --color-gold-deep: #8a6526;          /* deeper for gradient anchor */
-  --color-border:    rgba(255,255,255,.10);   /* was .14 — less harsh */
-  --color-surface:   rgba(255,255,255,.035);
-  --color-surface-2: rgba(255,255,255,.07);
+  --color-bg:        #03040b;
+  --color-dark:      #03040b;
+  --color-charcoal:  #07091a;
+  --color-text:      #e4eef8;
+  --color-muted:     rgba(148,192,218,0.58);
+  --color-gold:      #78c5e0;          /* crystal — replaces gold throughout */
+  --color-gold-soft: #a4d8ef;          /* lighter crystal shimmer */
+  --color-gold-deep: #3d9abf;          /* deeper crystal */
+  --color-border:    rgba(88,148,196,0.15);
+  --color-surface:   rgba(255,255,255,.03);
+  --color-surface-2: rgba(120,197,224,0.06);
 
   --font-display: "Manrope", "Noto Sans Georgian", sans-serif;
   --font-body:    "Noto Sans Georgian", "Manrope", sans-serif;
@@ -55,12 +55,6 @@ a:active {
   color: inherit;
 }
 
-// Remove or adjust anything like this
-.container, main, .page-wrapper {
-  max-width: 1200px;
-  padding: 0 2rem;
-  margin: 0 auto;
-}
 
 /* Buttons: reset font + remove the default grey */
 button {
@@ -199,7 +193,7 @@ ul, ol { list-style: none; }
 }
 
 /* ── Selection + scrollbar ──────────────────────────────── */
-::selection { background: var(--color-gold); color: #111; }
+::selection { background: var(--color-gold); color: #020408; }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0a0a0c; }
 ::-webkit-scrollbar-thumb { background: #1a1a1f; border-radius: 4px; }

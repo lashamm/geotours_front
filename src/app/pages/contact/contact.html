@@ -50,13 +50,39 @@
           <span class="info-value">+995 555 111 211</span>
         </div>
       </a>
+
+      <a href="https://t.me/+995555111211" target="_blank" rel="noopener" class="info-card">
+        <div class="info-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.487c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.875.734z"/>
+          </svg>
+        </div>
+        <div class="info-text">
+          <span class="info-label">{{ t.telegram }}</span>
+          <span class="info-value">+995 555 111 211</span>
+        </div>
+      </a>
+
+      <a href="/contact" class="info-card">
+        <div class="info-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="2,4 12,13 22,4"/>
+          </svg>
+        </div>
+        <div class="info-text">
+          <span class="info-label">{{ t.email }}</span>
+          <span class="info-value">vardo&#64;vardotour.com
+</span>
+        </div>
+      </a>
     </div>
 
     <!-- Form -->
     <div class="contact-form-wrap">
       @if (!submitted) {
         <form class="contact-form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-          <div class="form-row">
+          <!-- <div class="form-row"> -->
             <div class="form-group">
               <label [for]="'firstName'">{{ t.firstName }} <span class="req">*</span></label>
               <input
@@ -74,7 +100,7 @@
             </div>
             <!-- <div class="form-group">
               <!-- <label [for]="'lastName'">{{ t.lastName }} <span class="req">*</span></label> -->
-              <input
+              <!-- <input
                 id="lastName"
                 name="lastName"
                 type="text"
@@ -85,9 +111,9 @@
                 [placeholder]="t.lastName">
               @if (ln.invalid && ln.touched) {
                 <span class="field-error">Required</span>
-              }
+              } -->
             <!-- </div> -->
-          </div>
+          <!-- </div> -->
 
           <div class="form-group">
             <label [for]="'email'">{{ t.email }} <span class="req">*</span></label>

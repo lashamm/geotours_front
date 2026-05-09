@@ -72,6 +72,14 @@
   }
 }
 
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  svg { flex-shrink: 0; color: var(--color-gold); }
+}
+
 .footer-socials {
   display: flex;
   gap: 0.85rem;

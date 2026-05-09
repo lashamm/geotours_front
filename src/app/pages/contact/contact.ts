@@ -22,11 +22,12 @@ export class ContactComponent {
   }
 
   onSubmit() {
-    emailjs.send('service_id', 'template_id', {
-      from_name: `${this.form.firstName} ${this.form.lastName}`,
-      from_email: this.form.email,
-      message: this.form.message,
-    }, 'your_public_key');
+    emailjs.send('service_9lbdowb', 'template_ax41die', {
+      from_name: `${this.form.firstName}`,
+      from_email: `${this.form.email}`,
+      message: `${this.form.firstName}: ${this.form.message}
+      ${this.form.email}`,
+    }, 'MC94kPW_O5CQDq4d4');
     this.submitted = true;
   }
 
@@ -40,7 +41,7 @@ export class ContactComponent {
       label: string; title: string; sub: string;
       firstName: string; lastName: string; email: string; message: string;
       send: string; success: string; successSub: string; another: string;
-      phone: string; whatsapp: string; viber: string;
+      phone: string; whatsapp: string; viber: string; telegram: string;
     }> = {
       en: {
         label: 'Get In Touch', title: 'Contact Us',
@@ -49,7 +50,7 @@ export class ContactComponent {
         email: 'Email Address', message: 'Your Message', send: 'Send Message',
         success: 'Message Prepared!',
         successSub: 'Your email client opened — send it to complete your enquiry.',
-        another: 'Send Another', phone: 'Phone', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Send Another', phone: 'Phone', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       geo: {
         label: 'დაგვიკავშირდით', title: 'დაგვიკავშირდით',
@@ -58,7 +59,7 @@ export class ContactComponent {
         email: 'ელფოსტა', message: 'შეტყობინება', send: 'გაგზავნა',
         success: 'შეტყობინება მზადაა!',
         successSub: 'თქვენი ელფოსტის კლიენტი გაიხსნა. გაგზავნეთ შეტყობინება.',
-        another: 'სხვა შეტყობინება', phone: 'ტელეფონი', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'სხვა შეტყობინება', phone: 'ტელეფონი', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       ru: {
         label: 'Свяжитесь с нами', title: 'Контакты',
@@ -67,7 +68,7 @@ export class ContactComponent {
         email: 'Email', message: 'Сообщение', send: 'Отправить',
         success: 'Сообщение готово!',
         successSub: 'Ваш почтовый клиент открылся. Отправьте сообщение.',
-        another: 'Другое сообщение', phone: 'Телефон', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Другое сообщение', phone: 'Телефон', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       ar: {
         label: 'تواصل معنا', title: 'اتصل بنا',
@@ -76,7 +77,7 @@ export class ContactComponent {
         email: 'البريد الإلكتروني', message: 'رسالتك', send: 'إرسال',
         success: 'تم تجهيز الرسالة!',
         successSub: 'فُتح تطبيق البريد. أرسل الرسالة لإكمال استفسارك.',
-        another: 'إرسال رسالة أخرى', phone: 'الهاتف', whatsapp: 'واتساب', viber: 'فايبر',
+        another: 'إرسال رسالة أخرى', phone: 'الهاتف', whatsapp: 'واتساب', viber: 'فايبر', telegram: 'تيليغرام',
       },
       es: {
         label: 'Contáctanos', title: 'Contacto',
@@ -85,7 +86,7 @@ export class ContactComponent {
         email: 'Correo electrónico', message: 'Tu mensaje', send: 'Enviar mensaje',
         success: '¡Mensaje preparado!',
         successSub: 'Tu cliente de correo se abrió. Envía el mensaje para completar tu consulta.',
-        another: 'Enviar otro', phone: 'Teléfono', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Enviar otro', phone: 'Teléfono', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       fr: {
         label: 'Contactez-nous', title: 'Contact',
@@ -94,7 +95,7 @@ export class ContactComponent {
         email: 'Adresse email', message: 'Votre message', send: 'Envoyer',
         success: 'Message préparé !',
         successSub: "Votre client mail s'est ouvert. Envoyez le message pour finaliser.",
-        another: 'Envoyer un autre', phone: 'Téléphone', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Envoyer un autre', phone: 'Téléphone', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       it: {
         label: 'Contattaci', title: 'Contatti',
@@ -103,7 +104,7 @@ export class ContactComponent {
         email: 'Email', message: 'Il tuo messaggio', send: 'Invia messaggio',
         success: 'Messaggio pronto!',
         successSub: 'Il tuo client email si è aperto. Invia il messaggio.',
-        another: 'Invia un altro', phone: 'Telefono', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Invia un altro', phone: 'Telefono', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       de: {
         label: 'Kontakt aufnehmen', title: 'Kontakt',
@@ -112,7 +113,7 @@ export class ContactComponent {
         email: 'E-Mail-Adresse', message: 'Ihre Nachricht', send: 'Nachricht senden',
         success: 'Nachricht bereit!',
         successSub: 'Ihr E-Mail-Client wurde geöffnet. Senden Sie die Nachricht.',
-        another: 'Weitere senden', phone: 'Telefon', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Weitere senden', phone: 'Telefon', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       zh: {
         label: '联系我们', title: '联系方式',
@@ -121,7 +122,7 @@ export class ContactComponent {
         email: '电子邮件', message: '您的留言', send: '发送消息',
         success: '消息已准备好！',
         successSub: '您的邮件客户端已打开。发送消息即可完成您的询问。',
-        another: '再次发送', phone: '电话', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: '再次发送', phone: '电话', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
       tr: {
         label: 'Bize Ulaşın', title: 'İletişim',
@@ -130,7 +131,7 @@ export class ContactComponent {
         email: 'E-posta Adresi', message: 'Mesajınız', send: 'Mesaj Gönder',
         success: 'Mesaj Hazır!',
         successSub: 'E-posta istemciniz açıldı. Mesajı gönderin.',
-        another: 'Başka Mesaj', phone: 'Telefon', whatsapp: 'WhatsApp', viber: 'Viber',
+        another: 'Başka Mesaj', phone: 'Telefon', whatsapp: 'WhatsApp', viber: 'Viber', telegram: 'Telegram',
       },
     };
     return map[this.language];

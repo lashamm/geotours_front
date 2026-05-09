@@ -129,10 +129,7 @@
   &.cs-prev { left: 1rem; }
   &.cs-next { right: 1rem; }
 
-  @media (max-width: 860px) {
-    &.cs-prev { left: calc(50% - 52px); }
-    &.cs-next { right: calc(50% - 52px); }
-  }
+  @media (max-width: 860px) { display: none; }
 }
 
 // ─── Dots ─────────────────────────────────────────────────────────────────────

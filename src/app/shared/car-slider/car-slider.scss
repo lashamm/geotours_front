@@ -107,8 +107,9 @@
 
 .cs-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 1.5rem;
+  top: auto;
+  transform: none;
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -129,9 +130,6 @@
   &.cs-next { right: 1rem; }
 
   @media (max-width: 860px) {
-    top: auto;
-    bottom: 1.2rem;
-    transform: none;
     &.cs-prev { left: calc(50% - 52px); }
     &.cs-next { right: calc(50% - 52px); }
   }

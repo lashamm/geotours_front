@@ -142,9 +142,17 @@ export class CarSliderComponent {
     ];
   }
 
+  private touchStartX = 0;
+
   goTo(i: number) { this.activeIndex = i; }
   prev() { this.activeIndex = (this.activeIndex - 1 + 2) % 2; }
   next() { this.activeIndex = (this.activeIndex + 1) % 2; }
   open(car: Car) { this.selectedCar = car; }
   close() { this.selectedCar = null; }
+
+  onTouchStart(e: TouchEvent) { this.touchStartX = e.touches[0].clientX; }
+  onTouchEnd(e: TouchEvent) {
+    const delta = e.changedTouches[0].clientX - this.touchStartX;
+    if (Math.abs(delta) > 50) { delta < 0 ? this.next() : this.prev(); }
+  }
 }

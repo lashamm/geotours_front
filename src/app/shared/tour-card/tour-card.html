@@ -1,4 +1,4 @@
-<article class="tour-card">
+<article (click)="goToDetails()" style="cursor: pointer;" class="tour-card">
   <div class="card-image">
     <img [src]="tour.image" [alt]="ts.title" loading="lazy">
     <span class="card-tag">{{ ts.tag }}</span>

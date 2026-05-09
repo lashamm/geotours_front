@@ -1,5 +1,7 @@
 <div class="cs-wrap">
-  <div class="cs-stage">
+  <div class="cs-stage"
+       (touchstart)="onTouchStart($event)"
+       (touchend)="onTouchEnd($event)">
     @for (car of cars; track car.id; let i = $index) {
       <div class="cs-slide" [class.active]="i === activeIndex">
         <div class="cs-img-wrap">

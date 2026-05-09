@@ -11,6 +11,9 @@
   background: var(--color-surface);
   overflow: hidden;
   min-height: 420px;
+
+  @media (max-width: 860px) { min-height: 640px; }
+  @media (max-width: 480px) { min-height: 700px; }
 }
 
 .cs-slide {

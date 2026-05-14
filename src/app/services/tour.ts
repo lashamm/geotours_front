@@ -34,7 +34,7 @@ export interface Tour {
   id: number;
   title: string;
   region: string;
-  duration: string;
+  // duration: string;
   // price: number;
   image: string;
   images?: string[];
@@ -168,7 +168,7 @@ export class TourService {
       id: 1,
       title: 'Svaneti Mountain Expedition',
       region: 'Svaneti',
-      duration: '7 Days',
+      // duration: '7 Days',
       // price: 1890,
       image: 'assets/imgs/regions/svaneti/mestia-3.jpg',
       images: [
@@ -248,7 +248,7 @@ export class TourService {
       id: 2,
       title: 'Kakheti Wine & Culture',
       region: 'Kakheti',
-      duration: '4 Days',
+      // duration: '4 Days',
       // price: 980,
       image: 'assets/imgs/regions/kakheti/sighnaghi.jpg',
       images: [
@@ -318,7 +318,7 @@ export class TourService {
       id: 3,
       title: 'Tbilisi Old Town Immersion',
       region: 'Tbilisi',
-      duration: '3 Days',
+      // duration: '3 Days',
       // price: 650,
       image: 'assets/imgs/regions/tbilisi/old-tbilisi.png',
       images: [
@@ -369,7 +369,7 @@ export class TourService {
       id: 4,
       title: 'Kazbegi & The Military Highway',
       region: 'Kazbegi',
-      duration: '3 Days',
+      // duration: '3 Days',
       // price: 720,
       image: 'assets/imgs/regions/mtskheta-mtianeti/gergeti-trinity.jpg',
       images: [
@@ -432,7 +432,7 @@ export class TourService {
       id: 5,
       title: 'Vardzia Cave City & Borjomi Spa',
       region: 'Samtskhe-Javakheti',
-      duration: '4 Days',
+      // duration: '4 Days',
       // price: 890,
       image: 'assets/imgs/regions/samtskhe-javakheti/vardzia.jpg',
       images: [
@@ -493,7 +493,7 @@ export class TourService {
       id: 6,
       title: 'Adjara Black Sea & Highlands',
       region: 'Adjara',
-      duration: '4 Days',
+      // duration: '4 Days',
       // price: 850,
       image: 'assets/imgs/regions/adjara/batumi.jpg',
       images: [
@@ -553,7 +553,7 @@ export class TourService {
       id: 7,
       title: 'Imereti Caves & Monasteries',
       region: 'Imereti',
-      duration: '3 Days',
+      // duration: '3 Days',
       // price: 680,
       image: 'assets/imgs/regions/imereti/prometheus-cave.jpg',
       images: [
@@ -612,7 +612,7 @@ export class TourService {
       id: 8,
       title: 'Samegrelo Ancient Colchis',
       region: 'Samegrelo',
-      duration: '4 Days',
+      // duration: '4 Days',
       // price: 920,
       image: 'assets/imgs/regions/samegrelo/martvili.jpg',
       images: [
@@ -671,7 +671,7 @@ export class TourService {
       id: 9,
       title: 'Kvemo Kartli Canyon Adventure',
       region: 'Kvemo Kartli',
-      duration: '3 Days',
+      // duration: '3 Days',
       // price: 750,
       image: 'assets/imgs/regions/kvemo-kartli/dashbashi-canyon.jpg',
       images: [
@@ -730,7 +730,7 @@ export class TourService {
       id: 10,
       title: 'Shida Kartli History & Legends',
       region: 'Shida Kartli',
-      duration: '3 Days',
+      // duration: '3 Days',
       // price: 710,
       image: 'assets/imgs/regions/shida-kartli/uplistsikhe.jpg',
       images: [

@@ -105,10 +105,10 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
       },
       geo: {
         tours: 'ტურები', overview: 'მიმოხილვა', highlights: 'მნიშვნელოვანი',
-        cuisine: 'ადგილობრივი კულინარია', reviews: 'სტუმრების შეფასებები', quickInfo: 'სწრაფი ინფო',
+        cuisine: 'ადგილობრივი სამზარეულო', reviews: 'სტუმრების შეფასებები', quickInfo: 'ინფო',
         duration: 'ხანგრძლივობა', region: 'რეგიონი', category: 'კატეგორია',
         from: 'დან', perPerson: '/ კაცი', book: 'ტურის დაჯავშნა',
-        scroll: 'გადახვევა', startingFrom: 'დაწყებული',
+        scroll: 'ქვემოთ', startingFrom: 'საწყისი ფასი',
       },
       ru: {
         tours: 'Туры', overview: 'Обзор', highlights: 'Основное',
@@ -161,10 +161,10 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
       },
       tr: {
         tours: 'Turlar', overview: 'Genel Bakış', highlights: 'Öne Çıkanlar',
-        cuisine: 'Yerel Mutfak', reviews: 'Misafir Yorumları', quickInfo: 'Hızlı Bilgi',
+        cuisine: 'Yerel Mutfak', reviews: 'Misafir Yorumları', quickInfo: 'Bilgi',
         duration: 'Süre', region: 'Bölge', category: 'Kategori',
-        from: 'İtibaren', perPerson: '/ kişi', book: 'Bu Turu Rezerve Et',
-        scroll: 'Kaydır', startingFrom: 'Başlangıç fiyatı',
+        from: 'İtibaren', perPerson: '/ kişi', book: 'Turu Rezerve Et',
+        scroll: 'Aşağı', startingFrom: 'Başlangıç fiyatı',
       },
     };
     return map[this.language];

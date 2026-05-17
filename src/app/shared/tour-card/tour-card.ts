@@ -39,7 +39,7 @@ export class TourCardComponent {
       ru:  { from: 'от',        viewTour: 'Подробнее'  },
       ar:  { from: 'من',        viewTour: 'عرض الجولة' },
       es:  { from: 'Desde',     viewTour: 'Ver tour'   },
-      fr:  { from: 'À partir',  viewTour: 'Voir tour'  },
+      fr:  { from: 'À partir de', viewTour: 'Voir tour'  },
       it:  { from: 'Da',        viewTour: 'Vedi tour'  },
       de:  { from: 'Ab',        viewTour: 'Tour ansehen'},
       zh:  { from: '起',         viewTour: '查看旅游'   },

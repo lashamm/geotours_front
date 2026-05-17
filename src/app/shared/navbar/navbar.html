@@ -1,4 +1,4 @@
-<header class="nav" [class.scrolled]="scrolled" [class.menu-open]="open">
+<header class="nav" [class.scrolled]="scrolled || !isHome" [class.menu-open]="open">
   <div class="nav-inner">
     <a routerLink="/" class="nav-logo" (click)="closeMenu()">
       <svg class="crown-icon" viewBox="0 0 100 70" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

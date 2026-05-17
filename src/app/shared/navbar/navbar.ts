@@ -20,6 +20,7 @@ export interface LangOption {
 export class NavbarComponent implements OnInit, OnDestroy {
   open = false;
   scrolled = false;
+  isHome = true;
   langOpen = false;
   language: LangCode = 'en';
 
@@ -45,9 +46,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.scrolled = window.scrollY > 30;
+    this.isHome = this.router.url === '/';
     this.routerSub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => this.closeMenu());
+      .subscribe((e: any) => {
+        this.isHome = e.urlAfterRedirects === '/';
+        this.closeMenu();
+      });
   }
 
   ngOnDestroy() {

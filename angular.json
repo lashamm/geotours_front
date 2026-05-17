@@ -55,8 +55,8 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
+                "input": "/public/assets/imgs/favicon.ico",
+                "output": "src/public/assets/imgs/favicon.ico"
               }
             ],
             "styles": [
